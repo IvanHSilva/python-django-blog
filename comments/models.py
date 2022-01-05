@@ -8,7 +8,7 @@ class Comment(models.Model):
     email = models.EmailField(verbose_name='E-Mail')
     comment = models.TextField(verbose_name='Comentário')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Post')
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='Usuário')
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='Usuário', blank=True, null=True)
     comdate = models.DateTimeField(default=timezone.now, verbose_name='Data')
     published = models.BooleanField(default=False, verbose_name='Publicado')
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    {% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block content %}
+        <!-- POST -->
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-xl"></div>
+                <div class="col-xl-8 text-center">
+                    <h2>{{ post.title }}</h2>
+<!--                    <h5>{{ post.excert }}</h5>-->
+                    <p class="text-muted mt-4">
+                        <small>
+                            {{ post.author }} | {{ post.postdate }} | {{ post.catpost }}
+                        </small>
+                    </p>
+                </div>
+                <div class="col-xl"></div>
+            </div>
+
+            <div class="row pt-5">
+                <div class="col-xl"></div>
+                <div class="col-xl-8">
+                    {% if post.image %}
+                        <div class="text-center">
+                            <img class="img-fluid pb-5 " src="{{ post.image.url }}" alt="{{ post.title }}">
+                        </div>
+                    {% endif %}
+
+                    <div class="text-justify">
+                        {{ post.content|safe }}
+                    </div>
+                </div>
+                <div class="col-xl"></div>
+            </div>
+
+            <div class="row pt-5">
+                <div class="col-xl"></div>
+                <div class="col-xl-8">
+                    <h2 class="my-2">Comentários (X)</h2>
+
+                    <h5 class="mb-2 mt-5">User disse:</h5>
+                    <small class="text-muted">dia</small>
+                    <p class="mb-1">Bla bla bla</p>
+                </div>
+                <div class="col-xl"></div>
+            </div>
+
+            <div class="row pt-5">
+                <div class="col-xl"></div>
+                <div class="col-xl-8">
+                    <h2 class="my-3">Deixe um comentário</h2>
+
+                    <form method="POST" action="#sendcomment">
+                        {% csrf_token %}
+                        <table class="table">
+                            {{ form }}
+                            <tr>
+                                <td colspan="2">
+                                    {% include 'partials/_messages.html' %}
+                                    <input id="sendcomment" type="submit" class="btn btn-primary"
+                                        value="Enviar">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+
+                </div>
+                <div class="col-xl"></div>
+            </div>
+        </div>
+        <!-- POST -->
+    {% endblock %}
+</body>
+</html>
