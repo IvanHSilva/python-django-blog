@@ -39,17 +39,21 @@
                 <div class="col-xl"></div>
             </div>
 
-            <div class="row pt-5">
-                <div class="col-xl"></div>
-                <div class="col-xl-8">
-                    <h2 class="my-2">Comentários (X)</h2>
+            {% if comments %}
+                <div class="row pt-5">
+                    <div class="col-xl"></div>
+                    <div class="col-xl-8">
+                        <h2 class="my-2">Comentários: ({{ comments.count }})</h2>
 
-                    <h5 class="mb-2 mt-5">User disse:</h5>
-                    <small class="text-muted">dia</small>
-                    <p class="mb-1">Bla bla bla</p>
+                        {% for comment in comments %}
+                            <h5 class="mb-2 mt-5">{{ comment.name }} disse:</h5>
+                            <small class="text-muted">{{ comment.comdate }}</small>
+                            <p class="mb-1">{{ comment.comment }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xl"></div>
                 </div>
-                <div class="col-xl"></div>
-            </div>
+            {% endif %}
 
             <div class="row pt-5">
                 <div class="col-xl"></div>
