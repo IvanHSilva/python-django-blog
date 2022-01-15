@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load humanize %}
+{% load customfilters %}
 <html lang="pt">
 <head>
 </head>
@@ -27,9 +28,9 @@
                         <p class="card-text">{{ post.excert }}</p>
                         <p class="card-text">
                             <small class="text-muted">
-                                {{ post.postdate|naturalday|title }} |
+                                {{ post.postdate|naturalday }} |
 <!--                            {{ post.comment_set.count }} comentário(s) |-->
-                                {{ post.numcomments }} comentário(s) |
+                                {{ post.numcomments|checknumberofcomments }} |
                                 {{ post.catpost }}</small>
                         </p>
 
