@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from django.db.models import Q, Count, Case, When
+from django.db import connection
 from django.contrib import messages
 from .models import Post
 from comments.models import Comment
@@ -16,9 +17,15 @@ class PostIndex(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        qs = qs.select_related('catpost')
         qs = qs.order_by('-id').filter(published=True)
         qs = qs.annotate(numcomments=Count(Case(When(comment__published=True, then=1))))
         return qs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['connection'] = connection
+        return context
 
 class PostSearch(PostIndex):
     template_name = 'posts/search.html'
