@@ -42,7 +42,7 @@
             <div class="row pt-5">
                 <div class="col-xl"></div>
                 <div class="col-xl-8">
-                    <h2 class="my-2">Comentários: ({{ comments.count }})</h2>
+                    <h3 class="my-3">Comentários: ({{ comments.count }})</h3>
 
                     {% for comment in comments %}
                         <h5 class="mb-2 mt-5">{{ comment.name }} disse:</h5>
@@ -57,7 +57,7 @@
         <div class="row pt-5">
             <div class="col-xl"></div>
             <div class="col-xl-8">
-                <h2 class="my-3">Deixe um comentário</h2>
+                <h3 class="my-3">Deixe um comentário</h3>
 
                 <form method="POST" action="#sendcomment">
                     {% csrf_token %}
@@ -75,6 +75,7 @@
                     {% endfor %}
 
                     {% include 'partials/_messages.html' %}
+                    <input id="sendcomment" type="submit" class="btn btn-primary" value="Enviar">
                 </form>
 
             </div>
